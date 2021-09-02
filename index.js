@@ -29,5 +29,9 @@ class Stack {
     const arrLength = this.mainStack.length;
 
     this.mainStack[arrLength] = number;
+    const currentMin = this.getMin();
+    if (number < currentMin) {
+      this.minSaverStack.push(number);
+    }
   };
 }
