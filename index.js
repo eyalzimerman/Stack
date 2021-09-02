@@ -29,9 +29,37 @@ class Stack {
     const arrLength = this.mainStack.length;
 
     this.mainStack[arrLength] = number;
-    const currentMin = this.getMin();
-    if (number < currentMin) {
+    if (this.minSaverStack.length > 0) {
+      const currentMin = this.getMin();
+      if (number < currentMin) {
+        this.minSaverStack.push(number);
+      }
+    } else {
       this.minSaverStack.push(number);
     }
   };
+
+  pop = () => {
+    const arrLength = this.mainStack.length;
+    if (arrLength > 0) {
+      const last = this.mainStack.pop();
+      const minSaverStackLength = this.minSaverStack.length;
+      if (this.minSaverStack[minSaverStackLength - 1] === last) {
+        this.minSaverStack.pop();
+      }
+      return last;
+    }
+  };
 }
+
+const stack1 = new Stack();
+stack1.push(1);
+stack1.push(2);
+stack1.push(3);
+stack1.push(0);
+stack1.push(10);
+stack1.push(-1);
+console.log(stack1.getMin());
+stack1.pop();
+stack1.pop();
+console.log(stack1.getMin());
