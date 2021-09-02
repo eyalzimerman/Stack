@@ -16,7 +16,8 @@ class Stack {
   }
 
   getMin = () => {
-    if (this.minSaverStack.length > 0) {
+    const minSaverStackLength = this.minSaverStack.length;
+    if (minSaverStackLength > 0) {
       const min = this.minSaverStack.pop();
       this.minSaverStack.push(min);
       return min;
@@ -27,9 +28,11 @@ class Stack {
 
   push = (number) => {
     const arrLength = this.mainStack.length;
+    const minSaverStackLength = this.minSaverStack.length;
 
     this.mainStack[arrLength] = number;
-    if (this.minSaverStack.length > 0) {
+
+    if (minSaverStackLength > 0) {
       const currentMin = this.getMin();
       if (number < currentMin) {
         this.minSaverStack.push(number);
@@ -41,6 +44,7 @@ class Stack {
 
   pop = () => {
     const arrLength = this.mainStack.length;
+
     if (arrLength > 0) {
       const last = this.mainStack.pop();
       const minSaverStackLength = this.minSaverStack.length;
